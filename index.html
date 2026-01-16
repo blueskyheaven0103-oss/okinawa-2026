@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Okinawa Vibe 2026 | 最終導航版本</title>
+    <title>Okinawa Vibe 2026 | 全行程完整版</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
@@ -38,6 +38,7 @@
         .itinerary-item { border-left: 2px solid rgba(56, 189, 248, 0.3); padding-left: 1rem; position: relative; margin-bottom: 1.2rem; }
         .itinerary-item::before { content: ''; position: absolute; left: -5px; top: 8px; width: 8px; height: 8px; background: #38bdf8; border-radius: 50%; }
         .time-badge { background: #0ea5e9; color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.65rem; font-weight: bold; margin-right: 5px; }
+        .food-badge { background: rgba(244, 63, 94, 0.2); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.3); padding: 2px 8px; border-radius: 6px; font-size: 0.65rem; font-weight: bold; }
         .highlight-box { border-left: 4px solid #38bdf8; padding: 12px; background: rgba(56, 189, 248, 0.1); border-radius: 0 16px 16px 0; margin-top: 10px; }
     </style>
 </head>
@@ -58,11 +59,11 @@
 
     <main class="container mx-auto px-6 pb-24 max-w-lg">
         
-        <!-- Day 1 -->
+        <!-- Day 1: 1/18 -->
         <section id="day1" class="day-content animate__animated animate__fadeIn">
             <div class="mb-8">
                 <span class="text-4xl font-black text-sky-400">Day 01</span>
-                <p class="opacity-60 text-xs mt-1">1/18 · 入住 Nest Hotel Naha Nishi</p>
+                <p class="opacity-60 text-xs mt-1">1/18 (日) · 入住 Nest Hotel Naha Nishi</p>
             </div>
             
             <div class="qr-pass-container mb-6 shadow-2xl">
@@ -70,41 +71,66 @@
                 <div class="p-5 flex justify-between items-center">
                     <div>
                         <h3 class="font-black text-slate-800 text-lg">飯店 Check-in</h3>
-                        <a href="https://maps.app.goo.gl/3wGv29Ym6V1kS6VRA" target="_blank" class="map-link mt-2"><i class="fa-solid fa-location-dot"></i> 開啟地圖</a>
+                        <a href="https://maps.app.goo.gl/3wGv29Ym6V1kS6VRA" target="_blank" class="map-link mt-2"><i class="fa-solid fa-location-dot"></i> 飯店導航</a>
                     </div>
                     <div id="qr-hotel" class="qr-box"></div>
                 </div>
             </div>
+
+            <div class="glass-card p-5 mb-4">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="food-badge">晚餐 18:30</span>
+                    <a href="https://maps.app.goo.gl/FPr5oTskvU65N9vWA" target="_blank" class="map-link">Aun 居酒屋</a>
+                </div>
+                <p class="font-bold">肴家 あ aun (炭火料理、海鮮)</p>
+            </div>
+
+            <div class="glass-card p-5">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-xs font-bold text-sky-400 uppercase">Shopping</span>
+                    <a href="https://maps.app.goo.gl/uX3L56Wb9y7v1Z6p8" target="_blank" class="map-link">MaxValu 若狹店</a>
+                </div>
+                <p class="text-xs opacity-70 italic">24H超市，適合買草莓、飯後點心與黑糖伴手禮。</p>
+            </div>
         </section>
 
-        <!-- Day 2 -->
+        <!-- Day 2: 1/19 -->
         <section id="day2" class="day-content hidden animate__animated animate__fadeIn">
             <div class="mb-8">
                 <span class="text-4xl font-black text-sky-400">Day 02</span>
-                <p class="opacity-60 text-xs mt-1">1/19 · 南部一日遊 (KKday)</p>
+                <p class="opacity-60 text-xs mt-1">1/19 (一) · 南部精華一日遊</p>
             </div>
 
             <div class="qr-pass-container mb-6 shadow-2xl">
-                <div class="bg-sky-500 text-white text-[9px] p-2 text-center font-bold tracking-widest uppercase">KKday Activity Pass</div>
+                <div class="bg-sky-500 text-white text-[9px] p-2 text-center font-bold tracking-widest uppercase">KKday 一日遊憑證</div>
                 <div class="p-5">
                     <div class="flex justify-between items-start mb-4">
                         <div>
-                            <h3 class="font-black text-slate-800 text-lg">南部一日遊憑證</h3>
-                            <a href="https://maps.app.goo.gl/8CgL6Z3v4mR2" target="_blank" class="map-link mt-2">那霸縣廳前集合</a>
+                            <h3 class="font-black text-slate-800 text-lg">南部行程 (含玉泉洞)</h3>
+                            <a href="https://maps.app.goo.gl/8CgL6Z3v4mR2" target="_blank" class="map-link mt-2">縣廳前公車站集合</a>
                         </div>
                         <div id="qr-kkday" class="qr-box"></div>
                     </div>
-                    <p class="text-[11px] text-sky-600 font-bold mb-4"><i class="fa-solid fa-clock mr-1"></i> 08:30 集合 / 08:40 出發</p>
+                    <p class="text-[11px] text-sky-600 font-bold mb-2"><i class="fa-solid fa-clock mr-1"></i> 08:30 集合 / 08:40 出發</p>
                     <p class="text-[10px] text-slate-400 font-bold">確認號碼: 12435593</p>
                 </div>
             </div>
+
+            <div class="glass-card p-5 border-l-4 border-rose-500">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="food-badge">RESERVATION 19:30</span>
+                    <a href="https://maps.app.goo.gl/qY1oD6L5N8M2r4WA9" target="_blank" class="map-link">燒肉もとぶ</a>
+                </div>
+                <p class="font-bold">燒肉 もとぶ牧場 (那霸店)</p>
+                <p class="text-xs opacity-60 mt-1">沖繩知名和牛燒肉，推薦牛舌與特選肉。</p>
+            </div>
         </section>
 
-        <!-- Day 3 -->
+        <!-- Day 3: 1/20 -->
         <section id="day3" class="day-content hidden animate__animated animate__fadeIn">
             <div class="mb-8">
                 <span class="text-4xl font-black text-sky-400">Day 03</span>
-                <p class="opacity-60 text-xs mt-1">1/20 · 賞鯨與國際通大採買</p>
+                <p class="opacity-60 text-xs mt-1">1/20 (二) · 賞鯨與國際通採買</p>
             </div>
 
             <div class="glass-card p-6 mb-6">
@@ -115,35 +141,48 @@
                 
                 <div class="highlight-box">
                     <div class="flex justify-between items-center mb-2">
-                        <span class="time-badge text-sm">07:40 集合</span>
-                        <a href="https://maps.app.goo.gl/Fk9oGv2679k6rLqSA" target="_blank" class="map-link"><i class="fa-solid fa-location-arrow"></i> 開啟地圖導航</a>
+                        <span class="time-badge text-sm">07:40 集合接駁</span>
+                        <a href="https://maps.app.goo.gl/Fk9oGv2679k6rLqSA" target="_blank" class="map-link"><i class="fa-solid fa-location-arrow"></i> 希爾頓逸林導航</a>
                     </div>
-                    <p class="text-sm font-black text-white mb-1">DoubleTree by Hilton Hotel Naha</p>
-                    <p class="text-[10px] opacity-70 italic">ダブルツリー by ヒルトン 那覇</p>
-                    <p class="text-[9px] opacity-50 mt-1">3-15-20 Higashimachi, Naha, Okinawa</p>
+                    <p class="text-sm font-black text-white">DoubleTree by Hilton Hotel Naha</p>
+                    <p class="text-[10px] opacity-70">ダブルツリー by ヒルトン 那覇</p>
                 </div>
 
                 <div class="space-y-4 pt-6 mt-6 border-t border-white/5">
                     <div class="itinerary-item">
-                        <p class="text-sm font-bold">午餐：Tonton Jacky (炸豬排)</p>
+                        <div class="flex justify-between items-center">
+                            <p class="text-sm font-bold">午餐：Tonton Jacky (炸豬排)</p>
+                            <a href="https://maps.app.goo.gl/N9L6P8M2r4WA9WA9" target="_blank" class="map-link">地圖</a>
+                        </div>
                     </div>
+                    
                     <div class="itinerary-item">
-                        <p class="text-sm font-bold">下午：國際通、唐吉訶德採買</p>
+                        <p class="text-sm font-bold">下午：國際通、唐吉訶德採買 / 牧志市場</p>
                         <div class="flex gap-2 mt-2">
                             <a href="https://maps.app.goo.gl/pA7r6HqQ3iM2" target="_blank" class="map-link">國際通主街</a>
+                            <a href="https://maps.app.goo.gl/pA7r6HqQ3iM2" target="_blank" class="map-link">牧志市場</a>
                         </div>
+                    </div>
+
+                    <div class="itinerary-item">
+                        <div class="flex justify-between items-center">
+                            <p class="text-sm font-bold">晚餐：A&W 漢堡 (國際通店)</p>
+                            <a href="https://maps.app.goo.gl/pA7r6HqQ3iM2" target="_blank" class="map-link">地圖</a>
+                        </div>
+                        <p class="text-[10px] opacity-60">沖繩特色速食，推薦 Root Beer 與捲捲薯條。</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Day 4 -->
+        <!-- Day 4: 1/21 -->
         <section id="day4" class="day-content hidden animate__animated animate__fadeIn">
             <div class="mb-8">
                 <span class="text-4xl font-black text-sky-400">Day 04</span>
-                <p class="opacity-60 text-xs mt-1">1/21 · 美麗海水族館行程</p>
+                <p class="opacity-60 text-xs mt-1">1/21 (三) · 美麗海水族館之旅</p>
             </div>
 
+            <!-- 去程公車 -->
             <div class="glass-card p-5 mb-4 border-l-4 border-sky-400">
                 <div class="flex justify-between items-start mb-2">
                     <div>
@@ -155,6 +194,16 @@
                 <p class="text-[10px] opacity-60 italic">Kencho Kitaguchi (Pref. Govt. Office)</p>
             </div>
 
+            <!-- 水族館 -->
+            <div class="glass-card p-6 mb-4">
+                <div class="flex justify-between items-center mb-3">
+                    <h3 class="font-bold text-lg"><i class="fa-solid fa-water mr-2 text-sky-400"></i>美麗海水族館</h3>
+                    <a href="https://maps.app.goo.gl/H4r6L5N8M2" target="_blank" class="map-link">館區地圖</a>
+                </div>
+                <p class="text-[11px] opacity-70">停留約 5 小時。推薦 15:00 前往公車站候車。</p>
+            </div>
+
+            <!-- 回程公車 -->
             <div class="glass-card p-5 mb-4 border-l-4 border-amber-400">
                 <div class="flex justify-between items-start mb-2">
                     <div>
@@ -165,19 +214,32 @@
                 </div>
                 <p class="text-[10px] opacity-60 italic">Kinenkoen Mae (Churaumi Aquarium)</p>
             </div>
+
+            <!-- 最後晚餐 -->
+            <div class="glass-card p-5 border-l-4 border-emerald-400">
+                <div class="flex justify-between items-center mb-2">
+                    <h3 class="font-bold"><i class="fa-solid fa-hot-tub-person mr-2 text-emerald-400"></i>阿古豬火鍋 紺 kou</h3>
+                    <a href="https://maps.app.goo.gl/pA7r6HqQ3iM2" target="_blank" class="map-link">餐廳導航</a>
+                </div>
+                <p class="text-xs opacity-70">最後一晚，享用沖繩特產阿古豬涮涮鍋。</p>
+            </div>
         </section>
 
-        <!-- Day 5 -->
+        <!-- Day 5: 1/22 -->
         <section id="day5" class="day-content hidden animate__animated animate__fadeIn">
             <div class="mb-8 text-center">
                 <span class="text-4xl font-black text-sky-400">Day 05</span>
-                <p class="opacity-60 text-xs mt-1">1/22 · 賦歸</p>
+                <p class="opacity-60 text-xs mt-1">1/22 (四) · 賦歸</p>
             </div>
 
             <div class="glass-card p-10 text-center">
                 <i class="fa-solid fa-plane-departure text-4xl text-sky-400 mb-6"></i>
                 <h3 class="text-xl font-bold mb-4">那霸機場 (OKA)</h3>
-                <a href="https://maps.app.goo.gl/H4r6L5N8M2" target="_blank" class="map-link">機場導覽</a>
+                <p class="text-xs opacity-60 leading-relaxed mb-6">
+                    在飯店悠閒早餐，收拾行李。<br>
+                    帶著滿滿回憶與戰利品賦歸。
+                </p>
+                <a href="https://maps.app.goo.gl/H4r6L5N8M2" target="_blank" class="map-link">機場地圖導覽</a>
             </div>
         </section>
 
