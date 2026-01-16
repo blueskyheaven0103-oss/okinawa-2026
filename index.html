@@ -2,103 +2,239 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <title>Okinawa Vibe 2026 | Mobile Edition</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Okinawa Vibe 2026 | 沖繩冬日海風行</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Montserrat:wght@200;500&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&family=Montserrat:wght@200;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        :root { --glass: rgba(255, 255, 255, 0.1); --blur: blur(16px); }
         body {
             font-family: 'Noto Sans TC', sans-serif;
             background: linear-gradient(-45deg, #0f172a, #1e293b, #0c4a6e, #075985);
             background-size: 400% 400%;
             animation: gradient 15s ease infinite;
             color: white;
+            scroll-behavior: smooth;
+            transition: background 1s ease;
         }
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        @keyframes gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .glass-card {
+            background: var(--glass); backdrop-filter: var(--blur);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px;
         }
-        .glass {
-            background: rgba(255,255,255,0.12);
-            backdrop-filter: blur(14px);
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.15);
-        }
-        .tab {
-            padding: 8px 14px;
-            border-radius: 14px;
-            opacity: 0.5;
-        }
-        .tab.active {
-            opacity: 1;
-            background: rgba(56,189,248,0.2);
-            color: #38bdf8;
-            font-weight: bold;
-        }
+        .qr-pass-container { background: white; color: black; border-radius: 20px; overflow: hidden; }
+        .day-tab { cursor: pointer; transition: 0.3s; opacity: 0.5; padding: 10px 15px; border-radius: 15px; font-size: 0.8rem; }
+        .day-tab.active { color: #38bdf8; background: rgba(56, 189, 248, 0.15); opacity: 1; font-weight: bold; }
+        .itinerary-step { position: relative; padding-left: 1.5rem; border-left: 2px solid rgba(255,255,255,0.1); }
+        .itinerary-step::before { content: ''; position: absolute; left: -5px; top: 8px; width: 8px; height: 8px; border-radius: 50%; background: #38bdf8; }
+        .qr-box { background: white; padding: 8px; border-radius: 12px; display: inline-block; border: 1px solid #edf2f7; }
+        .map-btn { display: inline-flex; align-items: center; gap: 4px; background: rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 8px; font-size: 0.7rem; color: #7dd3fc; }
     </style>
 </head>
+<body class="min-h-screen">
 
-<body class="min-h-screen px-5 pb-24">
+    <header class="p-10 text-center animate__animated animate__fadeInDown">
+        <h1 class="text-4xl md:text-5xl font-thin tracking-widest font-['Montserrat'] mb-2 uppercase">Okinawa <span class="font-bold">2026</span></h1>
+        <p class="text-sky-300 tracking-[0.4em] text-[10px] uppercase opacity-70">Winter Sea Breeze Expedition</p>
+    </header>
 
-<header class="text-center py-12">
-    <h1 class="text-4xl font-thin tracking-widest font-['Montserrat']">Okinawa <span class="font-bold">2026</span></h1>
-    <p class="text-sky-300 text-xs tracking-[0.4em] mt-2">Winter Sea Breeze</p>
-</header>
+    <nav class="sticky top-6 z-50 flex justify-center items-center gap-1 py-2 px-3 glass-card mx-auto w-fit mb-10 shadow-2xl">
+        <div onclick="showDay(1)" id="t1" class="day-tab active">D1</div>
+        <div onclick="showDay(2)" id="t2" class="day-tab">D2</div>
+        <div onclick="showDay(3)" id="t3" class="day-tab">D3</div>
+        <div onclick="showDay(4)" id="t4" class="day-tab">D4</div>
+        <div onclick="showDay(5)" id="t5" class="day-tab">D5</div>
+    </nav>
 
-<nav class="flex justify-center gap-2 mb-10">
-    <div class="tab active" onclick="showDay(1)">D1</div>
-    <div class="tab" onclick="showDay(2)">D2</div>
-    <div class="tab" onclick="showDay(3)">D3</div>
-    <div class="tab" onclick="showDay(4)">D4</div>
-    <div class="tab" onclick="showDay(5)">D5</div>
-</nav>
+    <main class="container mx-auto px-6 pb-24 max-w-lg">
+        
+        <!-- Day 1 -->
+        <section id="day1" class="day-content animate__animated animate__fadeIn">
+            <div class="mb-8">
+                <span class="text-4xl font-black text-sky-400">Day 01</span>
+                <p class="opacity-60 text-xs mt-1">1/18 (週日) · 抵達與入住民券</p>
+            </div>
+            
+            <div class="qr-pass-container mb-6 shadow-2xl">
+                <div class="bg-emerald-600 text-white text-[9px] p-2 text-center font-bold tracking-widest uppercase">Accommodation Check-in</div>
+                <div class="p-5 flex justify-between items-center">
+                    <div>
+                        <h3 class="font-black text-slate-800 text-lg leading-tight">Nest Hotel<br>Naha Nishi</h3>
+                        <p class="text-[10px] text-slate-400 mt-2 font-mono">ID: 1682047242</p>
+                    </div>
+                    <div id="qr-hotel" class="qr-box"></div>
+                </div>
+                <div class="bg-slate-50 px-5 py-3 text-[10px] text-slate-500 border-t border-slate-100 flex justify-between">
+                    <span>1/18 - 1/22 (4 晚)</span>
+                    <span class="font-bold">NAI YU CHEN</span>
+                </div>
+            </div>
 
-<!-- Day 1 -->
-<section id="day1" class="day">
-    <div class="glass p-6 space-y-4">
-        <h2 class="text-xl font-bold text-sky-300">Day 1｜抵達那霸</h2>
-        <p class="text-sm opacity-70">1/18（週日）</p>
+            <div class="glass-card p-5 mb-4">
+                <div class="flex justify-between items-center mb-4">
+                    <h4 class="text-xs font-bold text-sky-400 uppercase tracking-widest"><i class="fa-solid fa-utensils mr-2"></i>晚餐預定</h4>
+                    <a href="https://maps.app.goo.gl/pA7r6HqQ3iM2" class="map-btn">Aun 地圖</a>
+                </div>
+                <p class="font-bold">肴家 あ aun (居酒屋)</p>
+            </div>
+        </section>
 
-        <div>
-            <p class="font-semibold">🏨 Nest Hotel Naha Nishi</p>
-            <p class="text-xs opacity-60">行李寄放後開始行程</p>
+        <!-- Day 2 -->
+        <section id="day2" class="day-content hidden animate__animated animate__fadeIn">
+            <div class="mb-8">
+                <span class="text-4xl font-black text-sky-400">Day 02</span>
+                <p class="opacity-60 text-xs mt-1">1/19 (週一) · 南部一日遊憑證</p>
+            </div>
+
+            <div class="qr-pass-container mb-6 shadow-2xl">
+                <div class="bg-sky-500 text-white text-[9px] p-2 text-center font-bold tracking-widest uppercase">KKday Activity Pass</div>
+                <div class="p-5">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="font-black text-slate-800 text-lg">南部精華一日遊</h3>
+                        <div id="qr-kkday" class="qr-box"></div>
+                    </div>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex items-center gap-2 text-sky-600 font-bold text-sm">
+                            <i class="fa-solid fa-clock"></i>
+                            <span>08:30 集合 / 08:40 出發</span>
+                        </div>
+                        <p class="text-[10px] text-slate-500 leading-relaxed font-bold">那霸縣廳前：県庁前観光バス乗降停留所</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 text-[10px] border-t pt-3 border-slate-100">
+                        <div><p class="text-slate-400 uppercase">訂單編號</p><p class="font-bold">25KK225730849</p></div>
+                        <div><p class="text-slate-400 uppercase">確認號碼</p><p class="font-bold text-slate-900">12435593</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card p-5">
+                <h4 class="text-xs font-bold text-red-400 uppercase mb-3 tracking-widest">燒肉預約 19:30</h4>
+                <p class="font-bold text-lg mb-1">燒肉 もとぶ牧場</p>
+                <p class="text-[10px] opacity-60">享受沖繩和牛的人氣名店</p>
+            </div>
+        </section>
+
+        <!-- Day 3 -->
+        <section id="day3" class="day-content hidden animate__animated animate__fadeIn">
+            <div class="mb-8">
+                <span class="text-4xl font-black text-sky-400">Day 03</span>
+                <p class="opacity-60 text-xs mt-1">1/20 (週二) · 賞鯨與市場導覽</p>
+            </div>
+            
+            <div class="glass-card p-6 mb-4 border-l-4 border-sky-400">
+                <div class="flex items-center gap-4 mb-4">
+                    <i class="fa-solid fa-fish-fins text-2xl text-sky-400"></i>
+                    <div>
+                        <p class="text-[10px] font-bold text-sky-400 uppercase">07:40 集合</p>
+                        <h3 class="font-bold text-lg">冬季座頭鯨賞鯨</h3>
+                    </div>
+                </div>
+                <p class="text-xs opacity-70 mb-4">集合地點：那霸希爾頓逸林酒店</p>
+                <div class="space-y-4">
+                    <div class="itinerary-step">
+                        <p class="text-sm font-bold">Tonton Jacky (炸豬排午餐)</p>
+                    </div>
+                    <div class="itinerary-step">
+                        <p class="text-sm font-bold">第一牧志公設市場</p>
+                    </div>
+                    <div class="itinerary-step">
+                        <p class="text-sm font-bold">A&W 漢堡 (國際通店)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Day 4 -->
+        <section id="day4" class="day-content hidden animate__animated animate__fadeIn">
+            <div class="mb-8">
+                <span class="text-4xl font-black text-sky-400">Day 04</span>
+                <p class="opacity-60 text-xs mt-1">1/21 (週三) · 美麗海水族館一日</p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="glass-card p-5">
+                    <p class="text-[10px] font-bold text-sky-400 uppercase mb-2">08:15 接駁專車</p>
+                    <h3 class="text-lg font-bold">前往美麗海水族館</h3>
+                    <p class="text-xs opacity-60 mt-2">約 10:30 抵達，建議優先前往黑潮之海咖啡廳抽號碼牌。</p>
+                </div>
+
+                <div class="glass-card p-5 bg-emerald-500/10 border-emerald-500/30">
+                    <h4 class="text-xs font-bold text-emerald-400 uppercase mb-2 tracking-widest">今晚大餐</h4>
+                    <p class="font-bold text-lg">阿古豬火鍋 紺 kou</p>
+                    <p class="text-[10px] opacity-70 mt-1">沖繩最後一晚的奢華火鍋。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Day 5 -->
+        <section id="day5" class="day-content hidden animate__animated animate__fadeIn">
+            <div class="mb-8">
+                <span class="text-4xl font-black text-sky-400">Day 05</span>
+                <p class="opacity-60 text-xs mt-1">1/22 (週四) · 國際通最後採買</p>
+            </div>
+
+            <div class="glass-card p-8 text-center">
+                <i class="fa-solid fa-plane-departure text-4xl text-sky-400 mb-4"></i>
+                <h3 class="text-xl font-bold mb-2">採買行程 & 賦歸</h3>
+                <p class="text-xs opacity-60 leading-relaxed">
+                    國際通最後伴手禮清單：<br>紅芋塔、石垣鹽、沖繩蝦餅。
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="fixed bottom-0 left-0 right-0 bg-black/40 backdrop-blur-md border-t border-white/5 py-4 z-40">
+        <div class="container mx-auto px-10 flex justify-between items-center text-[9px] tracking-widest opacity-50 uppercase font-black">
+            <div>Jan 18 - 22</div>
+            <div>Traveler: NAI YU CHEN</div>
         </div>
+    </footer>
 
-        <div>
-            <p class="font-semibold">🍜 午餐｜沖繩料理あさひ</p>
-            <a class="text-sky-400 text-xs underline"
-               href="https://www.google.com/maps/search/?api=1&query=沖縄料理+あさひ+那覇"
-               target="_blank">Google Maps 查看</a>
-        </div>
+    <script>
+        window.onload = function() {
+            // 生成飯店 QR Code
+            new QRCode(document.getElementById("qr-hotel"), {
+                text: "1682047242",
+                width: 70,
+                height: 70,
+                colorDark : "#065f46",
+                colorLight : "#ffffff"
+            });
 
-        <div>
-            <p class="font-semibold">🛒 超市採買｜MaxValu Wakasa</p>
-            <a class="text-sky-400 text-xs underline"
-               href="https://www.google.com/maps/search/?api=1&query=MaxValu+Wakasa+Naha"
-               target="_blank">Google Maps 查看</a>
-        </div>
-    </div>
-</section>
+            // 生成 KKday QR Code
+            new QRCode(document.getElementById("qr-kkday"), {
+                text: "25KK225730849",
+                width: 70,
+                height: 70,
+                colorDark : "#0369a1",
+                colorLight : "#ffffff"
+            });
+        };
 
-<!-- Placeholder -->
-<section id="day2" class="day hidden"><div class="text-center opacity-50 py-20">Day 2 行程</div></section>
-<section id="day3" class="day hidden"><div class="text-center opacity-50 py-20">Day 3 行程</div></section>
-<section id="day4" class="day hidden"><div class="text-center opacity-50 py-20">Day 4 行程</div></section>
-<section id="day5" class="day hidden"><div class="text-center opacity-50 py-20">Day 5 行程</div></section>
+        function showDay(day) {
+            document.querySelectorAll('.day-content').forEach(s => s.classList.add('hidden'));
+            document.getElementById('day' + day).classList.remove('hidden');
+            
+            document.querySelectorAll('.day-tab').forEach((t, i) => {
+                i + 1 === day ? t.classList.add('active') : t.classList.remove('active');
+            });
 
-<script>
-function showDay(d) {
-    document.querySelectorAll('.day').forEach(el => el.classList.add('hidden'));
-    document.getElementById('day' + d).classList.remove('hidden');
-    document.querySelectorAll('.tab').forEach((t,i)=>{
-        t.classList.toggle('active', i+1===d);
-    });
-    window.scrollTo({top:0, behavior:'smooth'});
-}
-</script>
-
+            const body = document.body;
+            const gradients = [
+                "linear-gradient(-45deg, #0f172a, #1e293b, #0c4a6e, #075985)",
+                "linear-gradient(-45deg, #1e293b, #450a0a, #0f172a, #111827)",
+                "linear-gradient(-45deg, #0c4a6e, #075985, #082f49, #0f172a)",
+                "linear-gradient(-45deg, #020617, #0f172a, #111b27, #0c4a6e)",
+                "linear-gradient(-45deg, #1e293b, #0c4a6e, #0f172a, #075985)"
+            ];
+            body.style.background = gradients[day-1];
+            body.style.backgroundSize = "400% 400%";
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>
